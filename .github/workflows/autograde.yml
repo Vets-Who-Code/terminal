@@ -1,0 +1,13 @@
+name: Autograding Navigation Assignment
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Navigation Tests
+        run: bash test_navigation.sh
