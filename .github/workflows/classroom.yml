@@ -1,7 +1,8 @@
-name: Autograding Tests
+name: Autograding Terminal Navigation Tests
 
 on:
   push:
+  pull_request:
   workflow_dispatch:
   repository_dispatch:
 
@@ -13,15 +14,18 @@ permissions:
 jobs:
   run-autograding-tests:
     runs-on: ubuntu-latest
-    if: github.actor != 'github-classroom[bot]'
+    if: github.actor != 'github-classroom[bot]'  # Prevents bot-triggered runs
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Make test script executable
+        run: chmod +x test_navigation.sh
+
       - name: Run Navigation Test Script
-        run: bash test_navigation.sh  # Runs the custom test script
+        run: bash test_navigation.sh  # Executes the student’s test script
 
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         with:
-          runners: navigation-test
+          runners: terminal-navigation-test
