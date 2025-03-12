@@ -25,6 +25,6 @@ jobs:
         run: bash test_navigation.sh
 
       - name: Autograding Reporter
-        uses: classroom-resources/autograding-grading-reporter@v1
+        uses: education/autograding-grading-reporter@v1
         with:
-          runners: "terminal-navigation-test"
+          reporter: "terminal-navigation-test"
